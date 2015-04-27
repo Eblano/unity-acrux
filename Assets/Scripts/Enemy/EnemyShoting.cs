@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyShoting : MonoBehaviour {
+public class EnemyShoting : MonoBehaviour 
+{/*
 	public float maximumDamage = 120f;                  // The maximum potential damage per shot.
 	public float minimumDamage = 45f;                   // The minimum potential damage per shot.
 	public AudioClip shotClip;                          // An audio clip to play when a shot happens.
@@ -109,5 +110,5 @@ public class EnemyShoting : MonoBehaviour {
 		
 		// Play the gun shot clip at the position of the muzzle flare.
 		AudioSource.PlayClipAtPoint(shotClip, laserShotLight.transform.position);
-	}
+	}*/
 }

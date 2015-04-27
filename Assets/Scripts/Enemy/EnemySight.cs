@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemySight : MonoBehaviour 
 {
+	/*
 	public float fieldOfViewAngle = 110f;
 	public bool playerInSight;
 	public Vector3 personalLastSighting;
@@ -109,5 +110,5 @@ public class EnemySight : MonoBehaviour
 			pathLengh += Vector3.Distance(allWayPoints[i], allWayPoints[i+1]);
 		}
 		return pathLengh;
-	}
+	}*/
 }

@@ -128,9 +128,8 @@ public class EnemyAI : MonoBehaviour
 		// Set the destination to the patrolWayPoint.
 		nav.destination = patrolWayPoints[wayPointIndex].position;
 	}
-
+	/*
 	Transform getNextWayPoint(Transform from){
-
-	}
+	}*/
 
 }
