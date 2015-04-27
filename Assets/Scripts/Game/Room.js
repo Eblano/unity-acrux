@@ -6,8 +6,6 @@ private var go_up : boolean;
 private var go_down : boolean;
 private var raise_speed : float = 30;
 
-public var meep : String;
-
 function Start() {
 	location = transform.position;
 	pos_to = 0;
