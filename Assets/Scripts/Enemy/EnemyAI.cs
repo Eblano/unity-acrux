@@ -7,10 +7,15 @@ public class EnemyAI : MonoBehaviour
 	public float chaseSpeed = 5f;                           // The nav mesh agent's speed when chasing.
 	public float chaseWaitTime = 5f;                        // The amount of time to wait when the last sighting is reached.
 	public float patrolWaitTime = 1f;                       // The amount of time to wait when the patrol way point is reached.
-	public Transform[] patrolWayPoints;                     // An array of transforms for the patrol route.
 
-	public Transform room;									// The room for reference init position
-	public Transform radioNextStept;						// The radio for next walking stept
+	// patrolling references
+	public GameObject room;									// The room for reference init position
+
+	public float minRangeNextStept;							// The min radio for next walking stept
+	public float maxRangeNextStept;							// The max radio for next walking stept
+	public Vector3 goToHere;								// The point to walk to
+	public Vector2 xLimits;									//Limits of posible movement in X
+	public Vector2 zLimits;									//Limits of posible movement in Z
 
 	private EnemySight enemySight;                          // Reference to the EnemySight script.
 	private NavMeshAgent nav;                               // Reference to the nav mesh agent.
@@ -30,6 +35,21 @@ public class EnemyAI : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag(Tags.player).transform;
 		//playerHealth = player.GetComponent<PlayerHealth>();
 		//lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSighting>();
+
+		//default init
+		minRangeNextStept = 5.0f;
+		maxRangeNextStept = 10.0f;
+
+		goToHere = new Vector3(0,0,0); 
+		nextWayPoint ();
+
+		float xSize = room.renderer.bounds.size.x / 2.0f;
+		float zSize = room.renderer.bounds.size.z / 2.0f;
+		float xPos = room.transform.position.x;
+		float zPos = room.transform.position.z;
+
+		xLimits = new Vector2 (xPos - xSize, xPos + xSize);
+		zLimits = new Vector2 (zPos - zSize, zPos + zSize);
 	}
 	
 	
@@ -107,29 +127,43 @@ public class EnemyAI : MonoBehaviour
 			// If the timer exceeds the wait time...
 			if(patrolTimer >= patrolWaitTime)
 			{
-				// ... increment the wayPointIndex.
-				/*
-				if(wayPointIndex == patrolWayPoints.Length - 1)
-					wayPointIndex = 0;
-				else
-					wayPointIndex++;
-				*/
 
-				// Generamos un 
-
+				nextWayPoint ();
 				// Reset the timer.
 				patrolTimer = 0;
 			}
 		}
 		else
+		{
 			// If not near a destination, reset the timer.
 			patrolTimer = 0;
+		}
 		
 		// Set the destination to the patrolWayPoint.
-		nav.destination = patrolWayPoints[wayPointIndex].position;
+		nav.destination = goToHere;
 	}
-	/*
-	Transform getNextWayPoint(Transform from){
-	}*/
 
+	private void nextWayPoint()
+	{
+		//Un random de algo dentro de una esfera con radio 1
+		Vector2 ranCirc = Random.insideUnitCircle;
+		Vector3 minVec = Vector3.Normalize (new Vector3 (ranCirc.x, 0, ranCirc.y)) * minRangeNextStept; // Vector del rango minimo con la orientacion random
+		ranCirc = ranCirc * (maxRangeNextStept - minRangeNextStept);
+		Vector3 newPos = new Vector3 (ranCirc.x, 0, ranCirc.y) + minVec;
+
+		//Modificamos limites y arreglamos randoms
+		if(newPos.z < zLimits[0] || newPos.z > zLimits[1])
+		{
+			newPos.z = -newPos.z;
+		}
+
+		if(newPos.x < xLimits[0] || newPos.x > xLimits[1])
+		{
+			newPos.x = -newPos.x;
+		}
+
+		newPos = newPos + this.transform.position; // lo centramos en el enemigo
+
+		goToHere = newPos;
+	}
 }
