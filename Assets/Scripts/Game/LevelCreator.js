@@ -3,9 +3,11 @@
 public var room_pfb : GameObject;
 // public var d_room_pfb : GameObject;
 public var tnode_pfb : GameObject;
+public var wall_pfb : GameObject;
 public var game_cam : GameObject;
 public var player : GameObject;
 public var grid_size : int = 2;
+
 
 private var rooms_grid : GameObject[,];
 private var room_num : float;
@@ -40,7 +42,7 @@ function create_level() {
 	rooms_grid = new GameObject[grid_size,grid_size];
 	room_num = 0;
 
-	create_grid ();
+	create_grid_dumb ();
 	add_transitions ();
 
 	var center : GameObject = rooms_grid[grid_size/2,grid_size/2];
@@ -164,25 +166,21 @@ function add_transitions() {
 			{
 				
 				//arriba
-				/*
 				if (is_empty(rooms_grid[i-1,j]))
 				{
-					
+					create_wall(room.transform.position.x + 21.8, room.transform.position.y + 4, room.transform.position.z + 0.35, 0, room, true);	
 				}
-				*/
 				
 				//izquierda
-				/*
 				if (is_empty(rooms_grid[i,j-1]))
 				{
-					
+					create_wall(room.transform.position.x - 0.35, room.transform.position.y + 4, room.transform.position.z + 21.8, 270, room, true);
 				}
-				*/
 				
 				//derecha
 				if (is_empty(rooms_grid[i,j+1]))
 				{
-					
+					create_wall(room.transform.position.x + 0.35, room.transform.position.y + 4, room.transform.position.z - 21.8, 90, room, true);	
 				}
 				else
 				{
@@ -192,7 +190,7 @@ function add_transitions() {
 				//abajo
 				if (is_empty(rooms_grid[i+1,j]))
 				{
-					
+					create_wall(room.transform.position.x - 21.8, room.transform.position.y + 4, room.transform.position.z - 0.35, 180, room, false);
 				}
 				else
 				{
@@ -235,4 +233,12 @@ function create_node(x : float, z:float, next_room : GameObject, prev_room : Gam
 	tn_script.next_room = next_room;
 	tn_script.prev_room = prev_room;
 	tn_script.game_cam = game_cam;
+}
+
+function create_wall(x: float, y : float, z : float, rot_dir : float, parent : GameObject, visible : boolean) {
+	var w_pos : Vector3 = Vector3(x,y,z);
+	var wall : GameObject = Instantiate(wall_pfb, w_pos, Quaternion.identity);
+	wall.transform.Rotate(0,rot_dir,0);
+	wall.transform.parent = parent.transform;
+	wall.GetComponent(Renderer).enabled = visible;
 }
