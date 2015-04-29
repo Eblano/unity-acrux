@@ -42,7 +42,7 @@ function create_level() {
 	rooms_grid = new GameObject[grid_size,grid_size];
 	room_num = 0;
 
-	create_grid_dumb ();
+	create_grid ();
 	add_transitions ();
 
 	var center : GameObject = rooms_grid[grid_size/2,grid_size/2];
@@ -184,7 +184,7 @@ function add_transitions() {
 				}
 				else
 				{
-					create_node(room.transform.position.x, room.transform.position.z - 22.5, rooms_grid[i,j+1], room);
+					create_node(room.transform.position.x, room.transform.position.z - 22.5, rooms_grid[i,j+1], room, true);
 				}
 				
 				//abajo
@@ -194,7 +194,7 @@ function add_transitions() {
 				}
 				else
 				{
-					create_node(room.transform.position.x - 22.5, room.transform.position.z, rooms_grid[i+1,j], room);
+					create_node(room.transform.position.x - 22.5, room.transform.position.z, rooms_grid[i+1,j], room, false);
 				}
 				
 			}
@@ -225,9 +225,10 @@ function create_debug_room(i : int, j : int) {
 }
 */
 
-function create_node(x : float, z:float, next_room : GameObject, prev_room : GameObject) {
+function create_node(x : float, z:float, next_room : GameObject, prev_room : GameObject, rotate : boolean) {
 	var tn_pos : Vector3 = Vector3(x, -0.5, z);
 	var trans_node : GameObject = Instantiate(tnode_pfb, tn_pos, Quaternion.identity);
+	if (rotate) { trans_node.transform.Rotate(0,90,0); }
 	trans_node.transform.parent = node_container.transform;
 	var tn_script : Transition = trans_node.GetComponentInChildren(Transition);
 	tn_script.next_room = next_room;

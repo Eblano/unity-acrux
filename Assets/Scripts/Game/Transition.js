@@ -7,6 +7,7 @@ public var game_cam : GameObject;
 function OnTriggerEnter (other : Collider) {
 	if (other.tag == "Player")
 	{
+		var pscript = other.GetComponent(ThirdPersonController);
 		if (next_room.GetComponent(Room).is_active())
 		{
 			next_room.GetComponent(Room).lower(); 
@@ -19,5 +20,8 @@ function OnTriggerEnter (other : Collider) {
 			prev_room.GetComponent(Room).lower(); 
 			game_cam.GetComponent(CamController).move_to(next_room.transform.position);
 		}
+		pscript.isControllable = false;
+		yield WaitForSeconds (1);
+		pscript.isControllable = true;
 	}
 }
