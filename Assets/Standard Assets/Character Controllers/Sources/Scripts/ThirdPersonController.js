@@ -7,6 +7,9 @@ public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
 var speed = 1000.0;
+var timeRun = 2;
+var incrementRun = true;
+var decreaseRun = true;
 public var walkMaxAnimationSpeed : float = 0.75;
 public var trotMaxAnimationSpeed : float = 1.0;
 public var runMaxAnimationSpeed : float = 1.0;
@@ -123,6 +126,15 @@ public var jumpPoseAnimation : AnimationClip;
 			
 }
 
+function decrementRun(){
+	timeRun -= 1;
+	decreaseRun = true;
+}
+function incrementRunF(){
+	timeRun += 1;
+	incrementRun = true;
+}
+
 
 function UpdateSmoothedMovementDirection ()
 {
@@ -190,21 +202,35 @@ function UpdateSmoothedMovementDirection ()
 		_characterState = CharacterState.Idle;
 		
 		// Pick speed modifier
-		if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
+		
+		if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) && timeRun > 0)
 		{
 			targetSpeed *= runSpeed;
 			_characterState = CharacterState.Running;
+			if(decreaseRun){
+				decreaseRun = false;
+				Invoke("decrementRun", 1);
+			}
 		}
 		else if (Time.time - trotAfterSeconds > walkTimeStart)
 		{
 			targetSpeed *= trotSpeed;
 			_characterState = CharacterState.Trotting;
+			if (incrementRun && timeRun < 2){
+				incrementRun = false;
+				Invoke("incrementRunF",5);
+			}
 		}
 		else
 		{
 			targetSpeed *= walkSpeed;
 			_characterState = CharacterState.Walking;
+			if (incrementRun && timeRun < 2){
+				incrementRun = false;
+				Invoke("incrementRunF",5);
+			}
 		}
+		
 		
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 		
