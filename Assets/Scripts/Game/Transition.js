@@ -7,7 +7,7 @@ public var game_cam : GameObject;
 function OnTriggerEnter (other : Collider) {
 	if (other.tag == "Player")
 	{
-		var pscript = other.GetComponent(ThirdPersonController);
+		var pscript = other.GetComponentInChildren(ThirdPersonController);
 		if (next_room.GetComponent(Room).is_active())
 		{
 			next_room.GetComponent(Room).lower(); 
