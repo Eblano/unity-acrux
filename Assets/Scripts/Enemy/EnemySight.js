@@ -3,7 +3,7 @@
 public var fieldOfViewAngle : float = 110f;
 public var playerInSight : boolean;
 public var personalLastSighting : Vector3;              // Last place this enemy spotted the player.
-
+public var resetSighting : Vector3 = new Vector3(1000f, 1000f, 1000f);
 
 private var nav : NavMeshAgent;                         // Reference to the NavMeshAgent component.
 private var col : SphereCollider;                       // Reference to the sphere collider trigger component.
@@ -26,8 +26,8 @@ function Awake ()
     hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
     
     // Set the personal sighting and the previous sighting to the reset position.
-    personalLastSighting = new Vector3(1000f, 1000f, 1000f);
-    previousSighting = new Vector3(1000f, 1000f, 1000f);
+    personalLastSighting = resetSighting;
+    previousSighting = resetSighting;
 }
 
 
