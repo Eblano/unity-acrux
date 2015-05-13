@@ -6,16 +6,15 @@ public var shotClip : AudioClip;
 public var flashIntensity : float = 3f;
 public var fadeSpeed : float = 10f;
 public var shot : float = 1;
-
+public var shooting : boolean;
 
 private var anim : Animator;
 private var hash : HashIDs;
 private var laserShotLine : LineRenderer;
-private var laserShotLight : Light;
+public var laserShotLight : Light;
 private var col : SphereCollider;
 private var player : Transform;
 private var playerHealth : PlayerHealth;
-private var shooting : boolean;
 private var scaledDamage : float;
 
 
@@ -29,6 +28,7 @@ function Awake ()
     playerHealth = player.gameObject.GetComponent(PlayerHealth);
     hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
     
+    shooting = false;
     laserShotLine.enabled = false;
     laserShotLight.intensity = 0f;
     scaledDamage = maximumDamage - minimumDamage;
@@ -51,7 +51,8 @@ function Update ()
     {
         // ... the enemy is no longer shooting and disable the line renderer.
         shooting = false;
-        laserShotLine.enabled = false;
+        if(shot > 0.05)
+        	laserShotLine.enabled = false;
         shot += Time.deltaTime / 10;
     }
     

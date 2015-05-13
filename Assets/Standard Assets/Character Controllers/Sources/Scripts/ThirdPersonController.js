@@ -6,10 +6,11 @@ public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
-var speed = 1000.0;
-var timeRun = 2;
-var incrementRun = true;
-var decreaseRun = true;
+
+public var timeRun : float = 2;
+public var canDash : boolean = true;
+public var dashing : boolean = false;
+
 public var walkMaxAnimationSpeed : float = 0.75;
 public var trotMaxAnimationSpeed : float = 1.0;
 public var runMaxAnimationSpeed : float = 1.0;
@@ -54,7 +55,7 @@ private var jumpTimeout = 0.15;
 private var groundedTimeout = 0.25;
 
 // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
-private var lockCameraTimer = 0.0;
+private var lockCameraTimerF = 0.0;
 
 // The current move direction in x-z
 private var moveDirection = Vector3.zero;
@@ -202,33 +203,36 @@ function UpdateSmoothedMovementDirection ()
 		_characterState = CharacterState.Idle;
 		
 		// Pick speed modifier
+		if(!canDash){
+			timeRun += Time.deltaTime;
+			if(timeRun > 1.0)
+			{
+				canDash = true;
+			}
+		}
 		
-		if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) && timeRun > 0)
+		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && canDash)
 		{
 			targetSpeed *= runSpeed;
 			_characterState = CharacterState.Running;
-			if(decreaseRun){
-				decreaseRun = false;
-				Invoke("decrementRun", 1);
+			dashing = true;
+			if(timeRun < 0)
+			{
+				canDash = false;
+				dashing = false;
+			}else{
+				timeRun -= Time.deltaTime;
 			}
 		}
 		else if (Time.time - trotAfterSeconds > walkTimeStart)
 		{
 			targetSpeed *= trotSpeed;
 			_characterState = CharacterState.Trotting;
-			if (incrementRun && timeRun < 2){
-				incrementRun = false;
-				Invoke("incrementRunF",5);
-			}
 		}
 		else
 		{
 			targetSpeed *= walkSpeed;
 			_characterState = CharacterState.Walking;
-			if (incrementRun && timeRun < 2){
-				incrementRun = false;
-				Invoke("incrementRunF",5);
-			}
 		}
 		
 		
