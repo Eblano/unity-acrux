@@ -58,6 +58,7 @@ function create_level() {
 	center.transform.position = Vector3(center.transform.position.x, 0, center.transform.position.z);
 	player.transform.position = Vector3(center.transform.position.x, 2.1, center.transform.position.z);
 	game_cam.GetComponent(CamController).center_on(center.transform.position);
+	// game_cam.GetComponent(CamController).move_to(center.transform.position);
 	
 	add_map_img(grid_size/2, grid_size/2, 5);
 				

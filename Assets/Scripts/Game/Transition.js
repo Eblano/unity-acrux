@@ -21,7 +21,7 @@ function OnTriggerEnter (other : Collider) {
 			prev_room.GetComponent(Room).raise(); 
 			game_cam.GetComponent(CamController).move_to(prev_room.transform.position);
 			notify_map_move( 
-				(prev_room.transform.position.z/-45)-1,
+				(prev_room.transform.position.z/-45)+1,
 				(prev_room.transform.position.x/-45)-1
 			);
 		}
@@ -31,7 +31,7 @@ function OnTriggerEnter (other : Collider) {
 			prev_room.GetComponent(Room).lower(); 
 			game_cam.GetComponent(CamController).move_to(next_room.transform.position);
 			notify_map_move(
-				(next_room.transform.position.z/-45)-1,
+				(next_room.transform.position.z/-45)+1,
 				(next_room.transform.position.x/-45)-1
 			);
 		}
