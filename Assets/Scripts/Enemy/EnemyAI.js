@@ -67,6 +67,7 @@ function Shooting ()
 {
 	action = "Shooting";
 	nav.Stop();
+	transform.LookAt(player.position + Vector3.up * 1.5f);
 }
 
 
