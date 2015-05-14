@@ -29,13 +29,17 @@ namespace FMG
 		{
 			if(str.Equals("LevelSelect"))
 			{
-				Debug.Log ("LevelSelect");
-				if(useLevelSelect)
+				float temp = PlayerPrefs.GetFloat("MusicVolume",1);
+				PlayerPrefs.SetFloat("MusicVolume",0);
+				AudioVolume[] audioVolumes = (AudioVolume[])GameObject.FindObjectsOfType(typeof(AudioVolume));
+				for(int i=0; i<audioVolumes.Length; i++)
 				{
-					Constants.fadeInFadeOut(levelSelectMenu,mainMenu);
-				}else{
-					Application.LoadLevel(1);
+					audioVolumes[i].updateVolume();
 				}
+
+				PlayerPrefs.SetFloat("MusicVolume", temp);
+				Application.LoadLevel("Main copia");
+
 			}
 
 			if(str.Equals("LevelSelectBack"))

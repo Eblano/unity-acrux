@@ -6,12 +6,9 @@ using UnityEngine.UI;
 namespace FMG
 {
 	public class ClickEvent : MonoBehaviour, IPointerClickHandler {
-
 		public virtual void OnPointerClick(PointerEventData eventData)
 		{
-			Debug.Log ("ClickEvent" );
-			if(audio)
-				audio.Play();
+
 		}
 	}
 }

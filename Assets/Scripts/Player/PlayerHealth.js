@@ -6,7 +6,7 @@ public var inmuneAfterHitTime : float = 1f;
 public var deathClip : AudioClip;
 public var hitClip : AudioClip;
 
-public var inmune : boolean = false;
+private var inmune : boolean = false;
 private var anim : Animator;
 private var playerMovement : ThirdPersonController;
 private var hash : HashIDs;

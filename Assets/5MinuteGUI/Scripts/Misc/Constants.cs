@@ -6,13 +6,21 @@ namespace FMG
 	
 	public class Constants  : MonoBehaviour 
 	{
-		public static float getAudioVolume()
+		public static float getMusicVolume()
 		{
-			return PlayerPrefs.GetFloat("AudioVolume",1);
+			return PlayerPrefs.GetFloat("MusicVolume",1);
 		}
-		public static void setAudioVolume(float vol)
+		public static void setMusicVolume(float vol)
 		{
-			 PlayerPrefs.SetFloat("AudioVolume",vol);
+			 PlayerPrefs.SetFloat("MusicVolume",vol);
+		}
+		public static float getEffectsVolume()
+		{
+			return PlayerPrefs.GetFloat("EffectsVolume",1);
+		}
+		public static void setEffectsVolume(float vol)
+		{
+			PlayerPrefs.SetFloat("EffectsVolume",vol);
 		}
 		public static int getMaxLevel()
 		{

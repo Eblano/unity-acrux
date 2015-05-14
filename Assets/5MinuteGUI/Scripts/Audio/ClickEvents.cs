@@ -18,6 +18,7 @@ namespace FMG
 					if(aud)
 					{
 						aud.clip = ac;
+						aud.volume = PlayerPrefs.GetFloat ("EffectsVolume", 1);
 					}
 					ce.gameObject.AddComponent<AudioVolume>();
 

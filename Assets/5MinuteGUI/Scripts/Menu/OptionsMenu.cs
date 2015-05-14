@@ -4,58 +4,51 @@ using UnityEngine.UI;
 namespace FMG
 {
 	public class OptionsMenu : MonoBehaviour {
-		public Text graphicsText;
-		public string graphicsPrefix = "Graphics: ";
 
-
-		public Text audioText;
-		public string audioPrefix = "Audio: ";
+		public Text MusicText;
+		public Text EffectsText;
+		public string musicPrefix = "Music: ";
+		public string EffectsPrefix = "Sound effects: ";
 		public string audioOff = "Off";
 
 		public string audioOn = "On";
 
 		public void Awake()
 		{
-			graphicsText.text = graphicsPrefix + QualitySettings.names[QualitySettings.GetQualityLevel()];
 			updateAudioText();
 		}
 
 		void updateAudioText()
 		{
-			float currentVol = Constants.getAudioVolume();
+			float currentVol = Constants.getMusicVolume();
 			if(currentVol==0)
 			{
-				audioText.text = audioPrefix  + audioOff;
+				MusicText.text = musicPrefix  + audioOff;
 			}else{
-				audioText.text = audioPrefix  + audioOn;
+				MusicText.text = musicPrefix  + audioOn;
+				
+			}
+			currentVol = Constants.getEffectsVolume();
+			if(currentVol==0)
+			{
+				EffectsText.text = EffectsPrefix  + audioOff;
+			}else{
+				EffectsText.text = EffectsPrefix  + audioOn;
 				
 			}
 
 		}
 		public void onCommand(string str)
 		{
-			if(str.Equals("DeleteData"))
+
+			if(str.Equals("MusicToggle"))
 			{
-				PlayerPrefs.DeleteAll();
-			}
-			if(str.Equals("QualityNext"))
-			{
-				QualitySettings.IncreaseLevel();
-				graphicsText.text = graphicsPrefix + QualitySettings.names[QualitySettings.GetQualityLevel()];
-			}
-			if(str.Equals("QualityPrev"))
-			{
-				QualitySettings.DecreaseLevel();
-				graphicsText.text = graphicsPrefix + QualitySettings.names[QualitySettings.GetQualityLevel()];
-			}
-			if(str.Equals("AudioToggle"))
-			{
-				float currentVol =  Constants.getAudioVolume();
-				if(currentVol==0)
+				float currentMusic =  Constants.getMusicVolume();
+				if(currentMusic==0)
 				{
-					Constants.setAudioVolume(1);
+					Constants.setMusicVolume(1);
 				}else{
-					Constants.setAudioVolume(0);
+					Constants.setMusicVolume(0);
 				}
 				AudioVolume[] audioVolumes = (AudioVolume[])GameObject.FindObjectsOfType(typeof(AudioVolume));
 				for(int i=0; i<audioVolumes.Length; i++)
@@ -64,6 +57,18 @@ namespace FMG
 				}
 
 				updateAudioText();
+			}
+			if(str.Equals("EffectsToggle"))
+			{
+				float currentEffects =  Constants.getEffectsVolume();
+				if(currentEffects==0)
+				{
+					Constants.setEffectsVolume(1);
+				}else{
+					Constants.setEffectsVolume(0);
+				}
+				updateAudioText();
+			
 			}
 		}
 	}

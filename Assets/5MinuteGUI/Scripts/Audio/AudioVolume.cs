@@ -18,7 +18,7 @@ namespace FMG
 		public void updateVolume () {
 			if(audio)
 			{
-				audio.volume = PlayerPrefs.GetFloat("AudioVolume",1) * m_initalVol;
+				audio.volume = PlayerPrefs.GetFloat("MusicVolume",1) * m_initalVol;
 			}
 		}
 	}
