@@ -6,6 +6,7 @@ public var tnode_pfb : GameObject;
 public var wall_pfb : GameObject;
 public var game_cam : GameObject;
 public var player : GameObject;
+public var down_arrow_pfb : GameObject;
 public var map_node_pfb : GameObject[];
 
 public var grid_size : int = 2;
@@ -223,6 +224,15 @@ function add_transitions() {
 				}
 				else
 				{
+					// create down arrow
+					var d_a_pos : Vector3 = room.transform.position;
+					d_a_pos.x -= 16;
+					
+					var d_arrow : GameObject = Instantiate(down_arrow_pfb, d_a_pos, Quaternion.identity);
+					d_arrow.transform.parent = room.transform;
+					d_arrow.transform.Rotate(0,-90,0);
+					
+					//
 					create_node(room.transform.position.x - 22.5, room.transform.position.z, rooms_grid[i+1,j], room, false);
 					adj_count++;
 				}
