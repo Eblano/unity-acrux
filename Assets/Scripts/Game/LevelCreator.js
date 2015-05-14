@@ -11,6 +11,7 @@ public var map_node_pfb : GameObject[];
 public var grid_size : int = 2;
 
 private var rooms_grid : GameObject[,];
+private var map_grid : GameObject[,];
 private var room_num : float;
 private var pref_rooms : float;
 
@@ -49,6 +50,7 @@ function create_level() {
 	pref_rooms = (grid_size * grid_size) / 2;
 	grid_size += 2;
 	rooms_grid = new GameObject[grid_size,grid_size];
+	map_grid = new GameObject[grid_size,grid_size];
 	room_num = 0;
 
 	create_grid ();
@@ -61,6 +63,7 @@ function create_level() {
 	// game_cam.GetComponent(CamController).move_to(center.transform.position);
 	
 	add_map_img(grid_size/2, grid_size/2, 5);
+	map_grid[grid_size/2,grid_size/2].active = true;
 				
 	grid_size -= 2;
 }
@@ -285,7 +288,8 @@ function add_map_img(x: int, y : int, type : int) {
 	
 	if (type < 5)
 	{
-		// add to meep
+		map_node.active = false;
+		map_grid[x,y] = map_node;
 	}
 	else
 	{
@@ -295,4 +299,6 @@ function add_map_img(x: int, y : int, type : int) {
 
 function move_p_node(x : int, y : int) {
 	map_p_node.transform.position = Vector3(x*16, grid_size*16-y*16, 0);
+	
+	map_grid[x,y+2].active = true;
 }
