@@ -1,9 +1,13 @@
 ﻿#pragma strict
-public var damage:int = 1;
-public var velocidad:int = 10;
-public var defensa:int = 1;
-function Start () {
+public var damage : int = 1;
+public var velocidad : int = 10;
+public var defensa : int = 1;
 
+private var movement : ThirdPersonController;
+function Start () {
+	movement = GetComponent(ThirdPersonController);
+	movement.walkSpeed = velocidad;
+	movement.trotSpeed = velocidad;
 }
 
 function Update () {
