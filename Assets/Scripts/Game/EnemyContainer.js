@@ -16,4 +16,15 @@ public function room_sleep() {
 	{
 		child.gameObject.active = false;
 	}
-} 
+}
+
+public function add_boss(boss : GameObject) {
+	//clear
+	for (var child : Transform in transform) 
+	{
+		Destroy(child.gameObject);
+	}
+	
+	//put boss in room
+	boss.transform.parent = transform;	
+}
