@@ -9,7 +9,9 @@ public function enemies_for(room : GameObject) {
 	container.name = "Enemies";
 	container.transform.parent = room.transform;
 	
-	for (var i : int = 0; i < maxEnemiesPerRoom; i++)
+	var num_of_enemies = Mathf.FloorToInt(Random.value * (maxEnemiesPerRoom - 1)) + 1;
+	
+	for (var i : int = 0; i < num_of_enemies; i++)
 	{
 		var esel : int = Mathf.FloorToInt(Random.value * enemy_pfbs.Length);
 		var enemy : GameObject = Instantiate(enemy_pfbs[esel], room.transform.position, Quaternion.identity);
