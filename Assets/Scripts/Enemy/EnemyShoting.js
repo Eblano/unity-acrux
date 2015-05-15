@@ -1,12 +1,12 @@
-﻿#pragma strict
-
-public var maximumDamage : float = 120f;
+﻿public var maximumDamage : float = 120f;
 public var minimumDamage : float = 45f;
 public var flashIntensity : float = 3f;
 public var fadeSpeed : float = 10f;
 public var ShootsPerSecond : float = 0.5f;
 public var ShootClip : AudioClip;
 public var waitTime : float = 0;
+public var ebullet_pfb : Rigidbody;
+public var speedBala = 100;
 
 private var awake = true; // should be false by default
 private var enemySight : EnemySight;
@@ -65,4 +65,8 @@ function Shoot ()
     var damage : float = scaledDamage * fractionalDistance + minimumDamage;
     AudioSource.PlayClipAtPoint(ShootClip, laserShootLight.transform.position);
     laserShootLight.intensity = flashIntensity;
+    
+    //
+	var clone : Rigidbody = Instantiate(ebullet_pfb, transform.position, transform.rotation);
+	clone.velocity = transform.TransformDirection(Vector3(0,0,30)); 
 }
