@@ -29,7 +29,7 @@ private var patrolTimer : float;
 private var wayPointIndex : int;
 
 private var prepareToAttack : float;
-private var damageToPlayer;
+private var damageToPlayer : float;
 function Awake ()
 {
 	

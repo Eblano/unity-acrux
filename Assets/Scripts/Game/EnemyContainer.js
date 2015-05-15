@@ -1,4 +1,5 @@
 ﻿#pragma strict
+#pragma downcast
 
 function Start () {
 	room_sleep();
@@ -7,14 +8,14 @@ function Start () {
 public function room_wakeup() {
 	for (var child : Transform in transform) 
 	{
-		child.gameObject.active = true;
+		child.gameObject.SetActive(true);
 	}
 } 
 
 public function room_sleep() {
 	for (var child : Transform in transform) 
 	{
-		child.gameObject.active = false;
+		child.gameObject.SetActive(false);
 	}
 }
 
