@@ -23,6 +23,6 @@ public function enemies_for(room : GameObject) {
 
 public function spawn_boss(room : GameObject) {
 	var boss : GameObject = Instantiate(boss_pfbs[0], room.transform.position, Quaternion.identity);
-	boss.transform.position.y += 5;
+	// boss.transform.position.y += 5;
 	return boss;
 }
