@@ -1,19 +1,19 @@
 ﻿#pragma strict
 
-public var patrolSpeed : float = 10f;                          	// The nav mesh agent's speed when patrolling.
+public var patrolSpeed : float = 5f;                          	// The nav mesh agent's speed when patrolling.
 public var afterHitSpeed : float = 5f;
-public var chaseSpeed : float = 15f;                           	// The nav mesh agent's speed when chasing.
+public var chaseSpeed : float = 10f;                           	// The nav mesh agent's speed when chasing.
 public var chaseWaitTime : float = 1f;                        	// The amount of time to wait when the last sighting is reached.
 public var patrolWaitTime : float = 1f;                       	// The amount of time to wait when the patrol way point is reached.
 public var attackDelayTime : float = 1f;
-public var damageToPlayer : float = 1f;
+
 public var type;
 
 // patrolling references
 public var floor : GameObject;
 
-public var minRangeNextStept : float;
-public var maxRangeNextStept  : float;
+public var minRangeNextStept : float = 5.0f; 
+public var maxRangeNextStept  : float = 10.0f;
 public var goToHere : Vector3;
 public var xLimits : Vector2;
 public var zLimits : Vector2;
@@ -22,24 +22,24 @@ private var enemySight : EnemySight;
 private var nav : NavMeshAgent;
 private var player : Transform;
 private var playerHealth: PlayerHealth;
+private var enemyHealth: EnemyHealth;
 
 private var chaseTimer : float;
 private var patrolTimer : float;
 private var wayPointIndex : int;
 
 private var prepareToAttack : float;
-
+private var damageToPlayer;
 function Awake ()
 {
+	
 	enemySight = GetComponent(EnemySight);
     nav = GetComponent(NavMeshAgent);
     player = GameObject.FindGameObjectWithTag(Tags.player).transform;
     playerHealth = player.GetComponent(PlayerHealth);
-	
-	prepareToAttack = damageToPlayer;
-	//default init
-	minRangeNextStept = 5.0f;
-	maxRangeNextStept = 10.0f;
+	enemyHealth = GetComponent(EnemyHealth);
+	damageToPlayer = enemyHealth.damageToPlayer;
+	prepareToAttack = attackDelayTime;
 
 	goToHere = new Vector3(0,0,0); 
 	nextWayPoint ();
