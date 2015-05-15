@@ -13,7 +13,6 @@ function Update () {
 		Invoke("enableShot",.5);
 		// Destroy(clone,.5);
 	}
-	
 	if (!canShoot)
 	{
 		time += Time.deltaTime;

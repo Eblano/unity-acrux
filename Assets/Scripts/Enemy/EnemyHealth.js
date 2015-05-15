@@ -19,7 +19,6 @@ function Awake()
 	enemySight = GetComponent(EnemySight);
 	childBody = transform.Find("Body");
 	timeFlash = 0;
-	health++;
 }
 
 function Update()
