@@ -3,7 +3,7 @@
 public var attackRate : float = 3.0f;
 public var waves : int = 2;
 public var bala : Rigidbody;
-public var speedBala : float;
+public var speedBala : float = 30.0f;
 
 private var enemyHealth : EnemyHealth;
 private var waitToAttack : float = 0f;
@@ -42,23 +42,17 @@ function Attack(){
 }
 
 function Patron1(waves : int){
-	for(var i = 0 ; i < 36 ; i++)
+	for(var i = 0 ; i < 18 ; i++)
 	{
 		var clone = Instantiate(bala, childAim.transform.position, childAim.transform.rotation);
-		clone.velocity = -childAim.transform.TransformDirection( Vector3(0,0,speedBala));
-		childAim.transform.Rotate(new Vector3(0,10,0));
+		clone.velocity = -childAim.transform.TransformDirection( Vector3(0,0,30));
+		childAim.transform.Rotate(new Vector3(0,20,0));
 	}
 	yield WaitForSeconds(1);
 }
 
 function Patron2(waves : int){	
 	yield WaitForSeconds(1);
-}
-
-function shootOnDirection(direction : Vector3)
-{
-	var clone = Instantiate(bala, childAim.transform.position, Quaternion.Euler(new Vector3(0,0,0));
-	bulletInstance.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
 }
 
 function Patron3(waves : int){
