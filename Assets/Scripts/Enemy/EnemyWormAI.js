@@ -1,10 +1,12 @@
 ﻿#pragma strict
 
-public var patrolSpeed : float = 5f;                          	// The nav mesh agent's speed when patrolling.
-public var chaseSpeed : float = 20f;                           	// The nav mesh agent's speed when chasing.
+public var patrolSpeed : float = 10f;                          	// The nav mesh agent's speed when patrolling.
+public var afterHitSpeed : float = 5f;
+public var chaseSpeed : float = 15f;                           	// The nav mesh agent's speed when chasing.
 public var chaseWaitTime : float = 1f;                        	// The amount of time to wait when the last sighting is reached.
 public var patrolWaitTime : float = 1f;                       	// The amount of time to wait when the patrol way point is reached.
-public var atackDelayTime : float = 1f;
+public var attackDelayTime : float = 1f;
+public var damageToPlayer : float = 1f;
 public var type;
 
 // patrolling references
@@ -25,8 +27,7 @@ private var chaseTimer : float;
 private var patrolTimer : float;
 private var wayPointIndex : int;
 
-private var attacking : boolean = false;
-private var prepareToAttk : float = 1f;
+private var prepareToAttack : float;
 
 function Awake ()
 {
@@ -34,7 +35,8 @@ function Awake ()
     nav = GetComponent(NavMeshAgent);
     player = GameObject.FindGameObjectWithTag(Tags.player).transform;
     playerHealth = player.GetComponent(PlayerHealth);
-
+	
+	prepareToAttack = damageToPlayer;
 	//default init
 	minRangeNextStept = 5.0f;
 	maxRangeNextStept = 10.0f;
@@ -62,14 +64,29 @@ function Update ()
 	
 	else
 		Patrolling();
+	
+	if(prepareToAttack < attackDelayTime)
+		prepareToAttack += Time.deltaTime;
 }
 
 function Shooting ()
 {
+	//miramos y nos dirigimos hacia el jugador
 	transform.LookAt(player.position + Vector3.up * 1.5f);
-	Chasing();	
+	nav.destination = player.position;
+	
+	if(nav.remainingDistance < 1.0f) // pseudo tocamos al jugador
+	{
+		player.gameObject.GetComponent(PlayerHealth).TakeDamage(damageToPlayer);
+		prepareToAttack = 0;
+	}
+	if(prepareToAttack < attackDelayTime)
+	{
+		nav.speed = afterHitSpeed;
+	}else {
+		nav.speed = chaseSpeed;
+	}
 }
-
 
 function Chasing ()
 {
@@ -78,7 +95,10 @@ function Chasing ()
 	if(sightingDeltaPos.sqrMagnitude > 4f)
 		nav.destination = enemySight.personalLastSighting;
 	
-	nav.speed = chaseSpeed;
+	if(prepareToAttack >= attackDelayTime)
+		nav.speed = chaseSpeed;
+	else
+		nav.speed = patrolSpeed;
 	
 	if(nav.remainingDistance < nav.stoppingDistance)
 	{
