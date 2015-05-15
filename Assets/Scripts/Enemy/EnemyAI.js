@@ -27,7 +27,7 @@ private var patrolTimer : float;                              		// A timer for t
 private var wayPointIndex : int;                              		// A counter for the way point array.
 
 
-function Awake ()
+function Start ()
 {
 	enemySight = GetComponent(EnemySight);
     nav = GetComponent(NavMeshAgent);

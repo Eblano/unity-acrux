@@ -60,6 +60,15 @@ function create_level() {
 	add_transitions ();
 
 	var center : GameObject = rooms_grid[grid_size/2,grid_size/2];
+	
+	for (var child : Transform in center.transform) 
+	{
+		if (child.name == "Enemies")
+		{
+			Destroy(child.gameObject);
+		}
+	}
+	
 	center.transform.position = Vector3(center.transform.position.x, 0, center.transform.position.z);
 	player.transform.position = Vector3(center.transform.position.x, 2.1, center.transform.position.z);
 	game_cam.GetComponent(CamController).center_on(center.transform.position);
@@ -229,6 +238,7 @@ function add_transitions() {
 				
 				
 				add_map_img(j, i, 0);
+				
 				enemy_creator.enemies_for(room);
 			}
 		}
