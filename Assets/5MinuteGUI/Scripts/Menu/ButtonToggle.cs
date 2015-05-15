@@ -21,7 +21,7 @@ namespace FMG
 		public Color selectedColor = Color.green;
 
 
-		private int m_selectedIndex=0;
+		//private int m_selectedIndex=0;
 
 		private RectTransform m_rectTransform;
 		private Vector3 m_orgPos;
