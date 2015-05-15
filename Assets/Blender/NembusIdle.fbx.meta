@@ -54,7 +54,7 @@ ModelImporter:
     400046: Pierna.R.001
     400048: Sphere.001
     4300000: Sphere.001
-    7400000: Armature.002|Armature.001Action
+    7400000: Walk
     7400002: Idle
     7400004: Dash
     9500000: //RootNode
@@ -76,7 +76,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature.002|Armature.001Action
+      name: Walk
       takeName: Armature.002|Armature.001Action
       firstFrame: 0
       lastFrame: 20
