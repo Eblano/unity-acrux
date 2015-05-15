@@ -15,7 +15,6 @@ public function enemies_for(room : GameObject) {
 	{
 		var esel : int = Mathf.FloorToInt(Random.value * enemy_pfbs.Length);
 		var enemy : GameObject = Instantiate(enemy_pfbs[esel], room.transform.position, Quaternion.identity);
-		//enemy.GetComponent(EnemyAI).room = room;
 		enemy.transform.parent = container.transform;
 	}
 	

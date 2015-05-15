@@ -7,9 +7,9 @@ public var timeFlashing : float = 0.2;
 public var deathClip : AudioClip;
 public var hitClip : AudioClip;
 public var flashColor : Color = Color.red;
+public var lifebar : UI.Image;
 
 private var inmune : boolean = false;
-
 //Anim stuff
 private var anim : Animator;
 private var playerMovement : ThirdPersonController;
@@ -20,7 +20,6 @@ private var timer : float;
 private var playerDead : boolean;
 private var flash : float;
 private var childBody : Transform;
-
 
 
 function Awake ()
@@ -34,6 +33,8 @@ function Awake ()
 
 function Update ()
 {
+	lifebar.rectTransform.sizeDelta = Vector2(health*3,30);
+	
     if(health <= 0f)
     {
         if(!playerDead)
