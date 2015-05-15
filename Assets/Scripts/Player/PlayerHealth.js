@@ -3,8 +3,10 @@
 public var health : float = 100f;
 public var resetAfterDeathTime : float = 5f;
 public var inmuneAfterHitTime : float = 1f;
+public var timeFlashing : float = 0.2;
 public var deathClip : AudioClip;
 public var hitClip : AudioClip;
+public var flashColor : Color = Color.red;
 
 private var inmune : boolean = false;
 private var anim : Animator;
@@ -13,6 +15,8 @@ private var hash : HashIDs;
 private var sceneFadeInOut : SceneFadeInOut;
 private var timer : float;
 private var playerDead : boolean;
+private var flash : float;
+private var childBody : Transform;
 
 function Awake ()
 {
@@ -20,6 +24,7 @@ function Awake ()
     playerMovement = GetComponent(ThirdPersonController);
     hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
     sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent(SceneFadeInOut);
+    childBody = transform.Find("NembusCuerpo");
 }
 
 function Update ()
@@ -42,6 +47,17 @@ function Update ()
     		inmuneAfterHitTime -= Time.deltaTime;
     	}
     }
+    if(inmune) // inmune time MUST be greater than timeFlashing
+    {
+	    if(flash < timeFlashing)
+		{
+			childBody.renderer.material.color = flashColor;
+			flash += Time.deltaTime;
+		}
+		else{
+			childBody.renderer.material.color = Color.white;
+		}
+	}
 }
 
 function PlayerDying ()
@@ -81,6 +97,7 @@ public function TakeDamage (amount : float)
 		inmuneAfterHitTime = 1;
 		inmune = true;
 	    health -= amount;
+	    flash = 0f;
     }
 }
 /*

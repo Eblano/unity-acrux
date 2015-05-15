@@ -23,16 +23,14 @@ function Awake()
 
 function Update()
 {
-	if(timeFlash >= 0)
+	if( timeFlash >= 0)
 	{
-		if( timeFlash >= 0.8)
-			childBody.renderer.material.color = flashColor;
-		else
-		{
-			childBody.renderer.material.color = Color.white;
-			timeFlash = 0;
-		}
+		childBody.renderer.material.color = flashColor;
 		timeFlash -= Time.deltaTime;
+	}
+	else
+	{
+		childBody.renderer.material.color = Color.white;
 	}
 }
 
@@ -40,5 +38,5 @@ public function TakeDamage(dmg : float)
 {	
 	health -= dmg;
 	enemySight.personalLastSighting = player.position;
-	timeFlash = 1.0f;
+	timeFlash = 0.2f;
 }
