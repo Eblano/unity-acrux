@@ -21,7 +21,7 @@ private var node_container : GameObject;
 private var map_container : GameObject;
 
 private var map_p_node : GameObject;
-
+private var enemy_creator : EnemyCreator;
 
 function Start () {
 	room_container = new GameObject();
@@ -34,6 +34,8 @@ function Start () {
 	
 	var canvas = GameObject.Find("Canvas");
 	map_container.transform.parent = canvas.transform;
+	
+	enemy_creator = this.gameObject.GetComponent(EnemyCreator);
 	
 	create_level ();
 }
@@ -227,6 +229,7 @@ function add_transitions() {
 				
 				
 				add_map_img(j, i, 0);
+				enemy_creator.enemies_for(room);
 			}
 		}
 	}
@@ -276,7 +279,7 @@ function create_wall(x: float, y : float, z : float, rot_dir : float, parent : G
 
 function add_map_img(x: int, y : int, type : int) {
 	var map_node : GameObject = Instantiate(map_node_pfb[type], Vector3(x*16, grid_size*16-y*16, 0), Quaternion.identity);
-	map_node.transform.SetParent(map_container.transform, false);
+	map_node.transform.SetParent(map_container.transform, true);
 	
 	if (type == 0)
 	{
