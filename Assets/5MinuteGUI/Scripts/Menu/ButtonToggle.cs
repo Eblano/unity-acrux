@@ -78,7 +78,7 @@ namespace FMG
 				return;
 			}
 			K_BUTTON_PRESS -= Time.deltaTime;
-
+			/*
 			if(Input.GetButtonDown("SelectButton"))
 			{
 				if(K_BUTTON_PRESS<=0)
@@ -115,6 +115,7 @@ namespace FMG
 				}
 				selectIndex(m_selectedIndex);
 			}
+			*/
 		}
 	}
 }

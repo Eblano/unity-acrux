@@ -43,7 +43,7 @@ namespace FMG
 				}
 
 				PlayerPrefs.SetFloat("MusicVolume", temp);
-				Application.LoadLevel("Main copia");
+				Application.LoadLevel("Main");
 
 			}
 
