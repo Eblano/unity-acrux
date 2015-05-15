@@ -4,6 +4,7 @@ public var patrolSpeed : float = 2f;                          	// The nav mesh a
 public var chaseSpeed : float = 5f;                           	// The nav mesh agent's speed when chasing.
 public var chaseWaitTime : float = 5f;                        	// The amount of time to wait when the last sighting is reached.
 public var patrolWaitTime : float = 1f;                       	// The amount of time to wait when the patrol way point is reached.
+public var type;
 //debug
 public var action : String = "";
 
@@ -26,7 +27,7 @@ private var patrolTimer : float;                              		// A timer for t
 private var wayPointIndex : int;                              		// A counter for the way point array.
 
 
-function Awake ()
+function Start ()
 {
 	enemySight = GetComponent(EnemySight);
     nav = GetComponent(NavMeshAgent);
@@ -140,4 +141,5 @@ private function nextWayPoint()
 	newPos = newPos + this.transform.position; 
 
 	goToHere = newPos;
+	
 }

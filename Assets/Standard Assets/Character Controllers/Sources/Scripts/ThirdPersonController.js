@@ -93,6 +93,8 @@ private var lastGroundedTime = 0.0;
 
 public var isControllable = true;
 
+public var dashbar : UI.Image;
+
 function Awake ()
 {
 	moveDirection = transform.TransformDirection(Vector3.forward);
@@ -200,46 +202,53 @@ function UpdateSmoothedMovementDirection ()
 		var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0);
 	
 		_characterState = CharacterState.Idle;
+				
+		dashing = Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift);
 		
-		// Pick speed modifier
-		if(!canDash){
-			timeRun += Time.deltaTime;
-			if(timeRun > 1.0)
-			{
-				canDash = true;
-			}
-		}
-		
-		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) && timeRun > 0)
+		if (dashing && canDash)
 		{
-			targetSpeed *= runSpeed;
-			_characterState = CharacterState.Running;
-			dashing = true;
-			if(timeRun < 0)
+			if (timeRun > 0)
+			{
+				targetSpeed *= runSpeed;
+				_characterState = CharacterState.Running;
+				timeRun -= Time.deltaTime * 2;
+			}
+			else
 			{
 				canDash = false;
-				dashing = false;
-			}else{
-				timeRun -= Time.deltaTime;
+				timeRun = 0;
 			}
 		}
-		else if (Time.time - trotAfterSeconds > walkTimeStart)
+		else if (timeRun < 2)
 		{
-			targetSpeed *= trotSpeed;
-			_characterState = CharacterState.Trotting;
+			if (timeRun > 2)
+				timeRun = 2;
+		
+			timeRun += Time.deltaTime / 4;
 		}
-		else
+		
+		if (!dashing || !canDash)
 		{
 			targetSpeed *= walkSpeed;
 			_characterState = CharacterState.Walking;
 		}
 		
+		if(timeRun > 1.0)
+		{
+			canDash = true;
+		}
+		else if (!dashing)
+		{
+			canDash = false;
+		}
 		
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 		
+		/*
 		// Reset walk time start when we slow down
 		if (moveSpeed < walkSpeed * 0.3)
 			walkTimeStart = Time.time;
+		*/
 	}
 	// In air controls
 	else
@@ -316,6 +325,7 @@ function DidJump ()
 }
 
 function Update() {
+	dashbar.rectTransform.sizeDelta = Vector2(150f * timeRun, 10);
 	
 	if (!isControllable)
 	{

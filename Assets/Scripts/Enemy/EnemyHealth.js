@@ -3,24 +3,48 @@
 public var health : float = 100f;
 public var deathClip : AudioClip;
 public var hitClip : AudioClip;
+public var flashColor : Color = Color.red;
+public var flashTime : float = 0.1f;
+public var damageToPlayer : float = 10.0f;
 
 private var player : Transform;
-private var colors : Color[] = new Color[2];
+private var childBody : Transform;
 private var enemySight : EnemySight;
+private var timeFlash : float;
+
 
 function Awake()
 {
 	player = GameObject.FindGameObjectWithTag(Tags.player).transform;
 	enemySight = GetComponent(EnemySight);
-	colors[0] = Color.red;
-	colors[1] = Color.white;
+	childBody = transform.Find("Body");
+	timeFlash = 0;
+	health++;
+}
+
+function Update()
+{
+	if( timeFlash >= 0)
+	{
+		childBody.renderer.material.color = flashColor;
+		timeFlash -= Time.deltaTime;
+	}
+	else
+	{
+		childBody.renderer.material.color = Color.white;
+	}
+	if(health <= 0){
+		justDie();
+	}
+}
+
+private function justDie(){
+	Destroy(this.gameObject);
 }
 
 public function TakeDamage(dmg : float)
-{
+{	
 	health -= dmg;
 	enemySight.personalLastSighting = player.position;
-	renderer.material.color = colors[0];
-	yield WaitForSeconds(0.5);
-	renderer.material.color = colors[1];
+	timeFlash = flashTime;
 }

@@ -16,7 +16,8 @@ function Update() {
 	if (Physics.Raycast(transform.position, fwd, hit, 2))
 	{
 		var col = hit.collider;
-		if (col.tag != "Player")
+		
+		if (col.tag != "Player" && col.tag != "EnemySphere")
 		{
 			if(col.tag == "Enemy")
 			{

@@ -1,0 +1,343 @@
+fileFormatVersion: 2
+guid: a94073e855f454a41850a2bf16a7f3be
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Armature.002
+    100002: Cuerpo
+    100004: Master
+    100006: //RootNode
+    100008: Pata.L
+    100010: Pata.L.001
+    100012: Pata.L.001_end
+    100014: Pata.L_end
+    100016: Pata.R
+    100018: Pata.R.001
+    100020: Pata.R.001_end
+    100022: Pata.R_end
+    100024: PataIK.L
+    100026: PataIK.L.001
+    100028: PataIK.L.001_end
+    100030: PataIK.L_end
+    100032: PataIK.R
+    100034: PataIK.R.001
+    100036: PataIK.R.001_end
+    100038: PataIK.R_end
+    100040: Pierna.L
+    100042: Pierna.L.001
+    100044: Pierna.R
+    100046: Pierna.R.001
+    100048: Sphere.001
+    400000: Armature.002
+    400002: Cuerpo
+    400004: Master
+    400006: //RootNode
+    400008: Pata.L
+    400010: Pata.L.001
+    400012: Pata.L.001_end
+    400014: Pata.L_end
+    400016: Pata.R
+    400018: Pata.R.001
+    400020: Pata.R.001_end
+    400022: Pata.R_end
+    400024: PataIK.L
+    400026: PataIK.L.001
+    400028: PataIK.L.001_end
+    400030: PataIK.L_end
+    400032: PataIK.R
+    400034: PataIK.R.001
+    400036: PataIK.R.001_end
+    400038: PataIK.R_end
+    400040: Pierna.L
+    400042: Pierna.L.001
+    400044: Pierna.R
+    400046: Pierna.R.001
+    400048: Sphere.001
+    4300000: Sphere.001
+    7400000: Walk
+    7400002: Idle
+    7400004: Dash
+    9500000: //RootNode
+    13700000: Sphere.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Armature.002|Armature.001Action
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature.002
+        weight: 1
+      - path: Armature.002/Master
+        weight: 1
+      - path: Armature.002/Master/Cuerpo
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L/Pata.L_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001/Pata.L.001_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R/Pata.R_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001/Pata.R.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L
+        weight: 1
+      - path: Armature.002/Master/PataIK.L/PataIK.L_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001/PataIK.L.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R
+        weight: 1
+      - path: Armature.002/Master/PataIK.R/PataIK.R_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001/PataIK.R.001_end
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Armature.002|Armature.002Action
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature.002
+        weight: 1
+      - path: Armature.002/Master
+        weight: 1
+      - path: Armature.002/Master/Cuerpo
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L/Pata.L_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001/Pata.L.001_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R/Pata.R_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001/Pata.R.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L
+        weight: 1
+      - path: Armature.002/Master/PataIK.L/PataIK.L_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001/PataIK.L.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R
+        weight: 1
+      - path: Armature.002/Master/PataIK.R/PataIK.R_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001/PataIK.R.001_end
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Dash
+      takeName: Armature.002|Armature.004Action
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature.002
+        weight: 1
+      - path: Armature.002/Master
+        weight: 1
+      - path: Armature.002/Master/Cuerpo
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L/Pata.L/Pata.L_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.L.001/Pata.L.001/Pata.L.001_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R/Pata.R/Pata.R_end
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001
+        weight: 1
+      - path: Armature.002/Master/Cuerpo/Pierna.R.001/Pata.R.001/Pata.R.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L
+        weight: 1
+      - path: Armature.002/Master/PataIK.L/PataIK.L_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.L.001/PataIK.L.001_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R
+        weight: 1
+      - path: Armature.002/Master/PataIK.R/PataIK.R_end
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001
+        weight: 1
+      - path: Armature.002/Master/PataIK.R.001/PataIK.R.001_end
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
