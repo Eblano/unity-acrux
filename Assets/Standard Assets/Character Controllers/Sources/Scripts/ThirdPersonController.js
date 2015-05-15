@@ -325,7 +325,8 @@ function DidJump ()
 }
 
 function Update() {
-	dashbar.rectTransform.sizeDelta = Vector2(150f * timeRun, 10);
+	if (dashbar)
+		dashbar.rectTransform.sizeDelta = Vector2(150f * timeRun, 10);
 	
 	if (!isControllable)
 	{

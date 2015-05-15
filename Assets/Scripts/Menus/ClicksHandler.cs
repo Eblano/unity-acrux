@@ -14,7 +14,7 @@ public class ClicksHandler : MonoBehaviour {
 		
 		else if(str.Equals("Game"))
 		{
-			Application.LoadLevel("Main copia");
+			Application.LoadLevel("Main");
 			
 		}
 	

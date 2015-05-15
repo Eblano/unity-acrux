@@ -58,6 +58,7 @@ function create_level() {
 
 	create_grid ();
 	add_transitions ();
+	spawn_boss(find_room_far(grid_size/2, grid_size/2));
 
 	var center : GameObject = rooms_grid[grid_size/2,grid_size/2];
 	
@@ -238,7 +239,6 @@ function add_transitions() {
 				
 				
 				add_map_img(j, i, 0);
-				
 				enemy_creator.enemies_for(room);
 			}
 		}
@@ -308,20 +308,24 @@ function move_p_node(x : int, y : int) {
 	map_grid[x,y+2].active = true;
 }
 
-function find_room(cx : int, cy : int) {
+function find_room_far(cx : int, cy : int) {
 	var max_dist : int = 0;
-	var froom : GameObject;
+	var froom : GameObject = rooms_grid[cx,cy];
 
 	for (var i : int = 0; i < grid_size - 2; i++)
 	{
 		for (var j : int = 0; j < grid_size - 2; j++)
 		{
-			var dist : int = (cx - j) + (cy - i);
-			
-			if (dist > max_dist)
+		
+			if (!is_empty(rooms_grid[i,j]))
 			{
-				max_dist = dist;
-				froom = rooms_grid[i,j];
+				var dist : int = (cx - j) + (cy - i);
+				
+				if (dist > max_dist)
+				{
+					max_dist = dist;
+					froom = rooms_grid[i,j];
+				}
 			}
 		}
 	}
@@ -330,5 +334,11 @@ function find_room(cx : int, cy : int) {
 }
 
 function spawn_boss(room : GameObject) {
-	
+	for (var child : Transform in room.transform) 
+	{
+		if (child.name == "Enemies")
+		{
+			child.GetComponent(EnemyContainer).add_boss(enemy_creator.spawn_boss(room));
+		}
+	}
 }

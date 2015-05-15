@@ -72,7 +72,8 @@ function PlayerDying ()
     playerDead = true;
     anim.SetBool(hash.deadBool, playerDead);
     */
-    AudioSource.PlayClipAtPoint(deathClip, transform.position);
+    // AudioSource.PlayClipAtPoint(deathClip, transform.position);
+    Application.LoadLevel("GameOver");
 }
 
 function PlayerDead ()

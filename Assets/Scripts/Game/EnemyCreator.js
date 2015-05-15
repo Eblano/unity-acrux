@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 public var enemy_pfbs : GameObject[];
+public var boss_pfbs : GameObject[];
 public var enemy_container_pfb : GameObject;
 public var maxEnemiesPerRoom : int = 3;
 
@@ -18,4 +19,10 @@ public function enemies_for(room : GameObject) {
 		enemy.transform.parent = container.transform;
 	}
 	
+}
+
+public function spawn_boss(room : GameObject) {
+	var boss : GameObject = Instantiate(boss_pfbs[0], room.transform.position, Quaternion.identity);
+	boss.transform.position.y += 5;
+	return boss;
 }
