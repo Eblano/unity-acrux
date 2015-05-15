@@ -1,0 +1,25 @@
+# Blender MTL File: 'enemy.blend'
+# Material Count: 2
+
+newmtl Material.013
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Andres\Desktop\Videojuegos2015\Elip\NormalsUnicorn.png
+map_Bump C:\\Users\\Andres\\Desktop\\Videojuegos2015\\Elip\\NormalsUnicorn.png
+map_Ks C:\\Users\\Andres\\Desktop\\Videojuegos2015\\Elip\\UnicornSpec.png
+map_Ns C:\\Users\\Andres\\Desktop\\Videojuegos2015\\Elip\\UnicornSpec.png
+
+newmtl Material.014
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.321600 0.000000 0.000346
+Ks 0.200989 0.000000 0.000152
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Andres\Desktop\Videojuegos2015\Elip\NormalsUnicorn.png

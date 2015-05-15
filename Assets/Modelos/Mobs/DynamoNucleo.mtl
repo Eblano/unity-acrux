@@ -1,0 +1,12 @@
+# Blender MTL File: 'enemy.blend'
+# Material Count: 1
+
+newmtl Material.009
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.321575 0.000000 0.000346
+Ks 0.200989 0.000000 0.000152
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Andres\Desktop\Videojuegos2015\Elip\AmOcDynamo.png
