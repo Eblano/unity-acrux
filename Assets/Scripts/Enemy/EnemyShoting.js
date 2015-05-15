@@ -37,27 +37,24 @@ function Awake ()
 
 function Update ()
 {
-	if(awake)
+	if(enemySight.playerInSight)
 	{
-		if(enemySight.playerInSight)
-		{
-			laserShootLine.SetPosition(0, laserShootLine.transform.position);
-		    laserShootLine.SetPosition(1, player.position + Vector3.up * 1.5f);
-		    laserShootLine.enabled = true;
-		    if(waitTime <= 0)
-		    {
-		    	Shoot();
-		    }
-		}
-		else 
-		{
-			laserShootLine.enabled = false;
-		}
-		if(waitTime > 0)
-		{
-			waitTime -= Time.deltaTime;
-			laserShootLight.intensity = Mathf.Lerp(laserShootLight.intensity, 0f, fadeSpeed * Time.deltaTime);
-		}
+		laserShootLine.SetPosition(0, laserShootLine.transform.position);
+	    laserShootLine.SetPosition(1, player.position + Vector3.up * 1.5f);
+	    laserShootLine.enabled = true;
+	    if(waitTime <= 0)
+	    {
+	    	Shoot();
+	    }
+	}
+	else 
+	{
+		laserShootLine.enabled = false;
+	}
+	if(waitTime > 0)
+	{
+		waitTime -= Time.deltaTime;
+		laserShootLight.intensity = Mathf.Lerp(laserShootLight.intensity, 0f, fadeSpeed * Time.deltaTime);
 	}
 }
 
@@ -68,15 +65,4 @@ function Shoot ()
     var damage : float = scaledDamage * fractionalDistance + minimumDamage;
     AudioSource.PlayClipAtPoint(ShootClip, laserShootLight.transform.position);
     laserShootLight.intensity = flashIntensity;
-}
-
-public function wakeUp()
-{
-	awake = false;
-	waitTime = 0;
-}
-
-public function wakeDown()
-{
-	awake = false;
 }

@@ -1,30 +1,28 @@
 ﻿#pragma strict
 
-public var patrolSpeed : float = 2f;                          	// The nav mesh agent's speed when patrolling.
-public var chaseSpeed : float = 5f;                           	// The nav mesh agent's speed when chasing.
-public var chaseWaitTime : float = 5f;                        	// The amount of time to wait when the last sighting is reached.
+public var patrolSpeed : float = 5f;                          	// The nav mesh agent's speed when patrolling.
+public var chaseSpeed : float = 20f;                           	// The nav mesh agent's speed when chasing.
+public var chaseWaitTime : float = 1f;                        	// The amount of time to wait when the last sighting is reached.
 public var patrolWaitTime : float = 1f;                       	// The amount of time to wait when the patrol way point is reached.
 public var type;
-//debug
-public var action : String = "";
 
 // patrolling references
-public var room : GameObject;									// The room for reference init position
+public var floor : GameObject;
 
-public var minRangeNextStept : float;							// The min radio for next walking stept
-public var maxRangeNextStept  : float;							// The max radio for next walking stept
-public var goToHere : Vector3;									// The point to walk to
-public var xLimits : Vector2;									//Limits of posible movement in X
-public var zLimits : Vector2;									//Limits of posible movement in Z
+public var minRangeNextStept : float;
+public var maxRangeNextStept  : float;
+public var goToHere : Vector3;
+public var xLimits : Vector2;
+public var zLimits : Vector2;
 
-private var enemySight : EnemySight;                          	// Reference to the EnemySight script.
-private var nav : NavMeshAgent;                               	// Reference to the nav mesh agent.
-private var player : Transform;                               	// Reference to the player's transform.
-private var playerHealth: PlayerHealth;							// Reference to the PlayerHealth script.
+private var enemySight : EnemySight;
+private var nav : NavMeshAgent;
+private var player : Transform;
+private var playerHealth: PlayerHealth;
 
-private var chaseTimer : float;                               		// A timer for the chaseWaitTime.
-private var patrolTimer : float;                              		// A timer for the patrolWaitTime.
-private var wayPointIndex : int;                              		// A counter for the way point array.
+private var chaseTimer : float;
+private var patrolTimer : float;
+private var wayPointIndex : int;
 
 
 function Awake ()
@@ -41,10 +39,10 @@ function Awake ()
 	goToHere = new Vector3(0,0,0); 
 	nextWayPoint ();
 
-	var xSize : float = room.renderer.bounds.size.x / 2.0f;
-	var zSize : float = room.renderer.bounds.size.z / 2.0f;
-	var xPos : float = room.transform.position.x;
-	var zPos : float = room.transform.position.z;
+	var xSize : float = floor.renderer.bounds.size.x / 2.0f;
+	var zSize : float = floor.renderer.bounds.size.z / 2.0f;
+	var xPos : float = floor.transform.position.x;
+	var zPos : float = floor.transform.position.z;
 
 	xLimits = new Vector2 (xPos - xSize, xPos + xSize);
 	zLimits = new Vector2 (zPos - zSize, zPos + zSize);
@@ -63,10 +61,8 @@ function Update ()
 		Patrolling();
 }
 
-
 function Shooting ()
 {
-	action = "Shooting";
 	nav.Stop();
 	transform.LookAt(player.position + Vector3.up * 1.5f);
 }
@@ -74,7 +70,6 @@ function Shooting ()
 
 function Chasing ()
 {
-	action = "Chasing";
 	var sightingDeltaPos : Vector3 = enemySight.personalLastSighting - transform.position;
 	
 	if(sightingDeltaPos.sqrMagnitude > 4f)
@@ -99,7 +94,6 @@ function Chasing ()
 
 function Patrolling ()
 {
-	action = "Patroling";
 	nav.speed = patrolSpeed;
 	
 	if(nav.remainingDistance < nav.stoppingDistance)
