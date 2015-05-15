@@ -25,10 +25,6 @@ function Update()
 {
 	if(timeFlash >= 0)
 	{
-		if(!sleeping)
-			sleep();
-		else
-			wakeUp();
 		if( timeFlash >= 0.8)
 			childBody.renderer.material.color = flashColor;
 		else
@@ -45,16 +41,4 @@ public function TakeDamage(dmg : float)
 	health -= dmg;
 	enemySight.personalLastSighting = player.position;
 	timeFlash = 1.0f;
-}
-
-public function wakeUp()
-{
-	sleeping = false;
-	this.gameObject.SetActive(!sleeping);
-}
-
-public function sleep()
-{
-	sleeping = true;
-	this.gameObject.SetActive(!sleeping);
 }
