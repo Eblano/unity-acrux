@@ -307,3 +307,28 @@ function move_p_node(x : int, y : int) {
 	
 	map_grid[x,y+2].active = true;
 }
+
+function find_room(cx : int, cy : int) {
+	var max_dist : int = 0;
+	var froom : GameObject;
+
+	for (var i : int = 0; i < grid_size - 2; i++)
+	{
+		for (var j : int = 0; j < grid_size - 2; j++)
+		{
+			var dist : int = (cx - j) + (cy - i);
+			
+			if (dist > max_dist)
+			{
+				max_dist = dist;
+				froom = rooms_grid[i,j];
+			}
+		}
+	}
+	
+	return froom;
+}
+
+function spawn_boss(room : GameObject) {
+	
+}

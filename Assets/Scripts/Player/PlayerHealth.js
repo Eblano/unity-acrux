@@ -18,6 +18,8 @@ private var playerDead : boolean;
 private var flash : float;
 private var childBody : Transform;
 
+public var lifebar : UI.Image;
+
 function Awake ()
 {
     anim = GetComponent(Animator);
@@ -29,6 +31,8 @@ function Awake ()
 
 function Update ()
 {
+	lifebar.rectTransform.sizeDelta = Vector2(health*3,30);
+	
     if(health <= 0f)
     {
         if(!playerDead)
