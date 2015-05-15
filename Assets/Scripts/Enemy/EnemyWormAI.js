@@ -25,6 +25,8 @@ private var chaseTimer : float;
 private var patrolTimer : float;
 private var wayPointIndex : int;
 
+private var attacking : boolean = false;
+private var prepareToAttk : float = 1f;
 
 function Awake ()
 {
@@ -64,8 +66,8 @@ function Update ()
 
 function Shooting ()
 {
-	nav.Stop();
 	transform.LookAt(player.position + Vector3.up * 1.5f);
+	Chasing();	
 }
 
 
