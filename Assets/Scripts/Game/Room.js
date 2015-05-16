@@ -1,4 +1,5 @@
 ﻿#pragma strict
+#pragma downcast
 
 private var location : Vector3;
 private var pos_to : float;

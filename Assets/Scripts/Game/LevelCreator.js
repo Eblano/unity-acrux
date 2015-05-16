@@ -1,4 +1,5 @@
 ﻿#pragma strict
+#pragma downcast
 
 public var room_pfb : GameObject;
 // public var d_room_pfb : GameObject;
@@ -79,7 +80,7 @@ function create_level() {
 	game_cam.GetComponent(CamController).move_to(center.transform.position);
 	
 	add_map_img(grid_size/2, grid_size/2, 1);
-	map_grid[grid_size/2,grid_size/2].active = true;
+	map_grid[grid_size/2,grid_size/2].SetActive(true);
 				
 	grid_size -= 2;
 }
@@ -296,7 +297,7 @@ function add_map_img(x: int, y : int, type : int) {
 	
 	if (type == 0)
 	{
-		map_node.active = false;
+		map_node.SetActive(false);
 		map_grid[x,y] = map_node;
 	}
 	else
@@ -308,7 +309,7 @@ function add_map_img(x: int, y : int, type : int) {
 function move_p_node(x : int, y : int) {
 	map_p_node.transform.position = Vector3(x*16, grid_size*16-y*16, 0);
 	
-	map_grid[x,y+2].active = true;
+	map_grid[x,y+2].SetActive(true);
 }
 
 function find_room_far(cx : int, cy : int) {
