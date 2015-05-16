@@ -8,7 +8,6 @@ function Update() {
 	if (Physics.Raycast(transform.position, fwd, hit, 2))
 	{
 		var col = hit.collider;
-		Debug.Log(col.name);
 		
 		if (col.tag != "EnemySphere" && col.tag != "Enemy")
 		{

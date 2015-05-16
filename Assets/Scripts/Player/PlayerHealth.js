@@ -28,7 +28,7 @@ function Awake ()
     playerMovement = GetComponent(ThirdPersonController);
     hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
     sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent(SceneFadeInOut);
-    childBody = transform.Find("NembusCuerpo");
+    childBody = transform.Find("Poligono");
 }
 
 function Update ()
@@ -57,11 +57,11 @@ function Update ()
     {
 	    if(flash < timeFlashing)
 		{
-			childBody.renderer.material.color = flashColor;
+			if(childBody) { childBody.renderer.material.color = flashColor; }
 			flash += Time.deltaTime;
 		}
 		else{
-			childBody.renderer.material.color = Color.white;
+			if (childBody) { childBody.renderer.material.color = Color.white; }
 		}
 	}
 }

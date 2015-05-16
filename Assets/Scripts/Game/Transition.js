@@ -14,7 +14,7 @@ function Start() {
 function OnTriggerEnter (other : Collider) {
 	if (other.tag == "Player")
 	{
-		var pscript = other.GetComponentInChildren(ThirdPersonController);
+		var pscript = other.GetComponentInChildren(TPC_Player);
 		if (next_room.GetComponent(Room).is_active())
 		{
 			next_room.GetComponent(Room).lower(); 
