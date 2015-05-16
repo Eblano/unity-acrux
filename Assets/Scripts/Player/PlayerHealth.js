@@ -34,7 +34,6 @@ function Awake ()
 function Update ()
 {
 	lifebar.rectTransform.sizeDelta = Vector2(health*3,30);
-	
     if(health <= 0f)
     {
         if(!playerDead)
