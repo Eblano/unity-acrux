@@ -1,12 +1,20 @@
 ﻿#pragma strict
 	
-public var dashingBool : int;
+public var dashBool : int;
+public var deathBool : int;
 public var walkBool : int;
 public var speedFloat : int;
 
+public var walkState : int;
+public var dashState : int;
+
 function Awake ()
 {
-    walkBool = Animator.StringToHash("Walk");
-    dashingBool = Animator.StringToHash("Dash");
-    speedFloat = Animator.StringToHash("Speed");
+    dashBool = Animator.StringToHash("Player Dash");
+    deathBool = Animator.StringToHash("Player Death");
+    walkBool = Animator.StringToHash("Player Walk");
+    speedFloat = Animator.StringToHash("Player Speed");
+    
+    walkState = Animator.StringToHash("Player Base Layer.Walk");
+    dashState = Animator.StringToHash("Player Base Layer.Dash");
 }
