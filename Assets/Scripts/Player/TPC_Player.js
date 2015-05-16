@@ -102,7 +102,7 @@ public var dashbar : UI.Image;
 function Awake ()
 {
 	moveDirection = transform.TransformDirection(Vector3.forward);
-	
+	controller = GetComponent(CharacterController);
 	_animation = GetComponent(Animation);
 	_animator = transform.Find("Body").GetComponent(Animator);
 	_hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
@@ -305,7 +305,7 @@ function ApplyGravity ()
 			jumpingReachedApex = true;
 			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
 		}
-	
+		Debug.Log("Apply Grav" + IsGrounded());
 		if (IsGrounded ())
 			verticalSpeed = 0.0;
 		else
@@ -361,7 +361,7 @@ function Update() {
 	movement *= Time.deltaTime;
 	
 	// Move the controller
-	controller = GetComponent(CharacterController);
+	
 	collisionFlags = controller.Move(movement);
 	
 	// ANIMATION sector
