@@ -4,8 +4,6 @@ public var room_pfb : GameObject;
 // public var d_room_pfb : GameObject;
 public var tnode_pfb : GameObject;
 public var wall_pfb : GameObject;
-public var game_cam : GameObject;
-public var player : GameObject;
 public var down_arrow_pfb : GameObject;
 public var map_node_pfb : GameObject[];
 
@@ -15,13 +13,18 @@ private var rooms_grid : GameObject[,];
 private var map_grid : GameObject[,];
 private var room_num : float;
 private var pref_rooms : float;
-
 private var room_container : GameObject;
 private var node_container : GameObject;
 private var map_container : GameObject;
-
 private var map_p_node : GameObject;
 private var enemy_creator : EnemyCreator;
+private var game_cam : GameObject;
+private var player : GameObject;
+
+function Awake() {
+	game_cam = GameObject.Find("GameCamera");
+	player = GameObject.Find("Player");
+}
 
 function Start () {
 	room_container = new GameObject();
@@ -73,7 +76,7 @@ function create_level() {
 	center.transform.position = Vector3(center.transform.position.x, 0, center.transform.position.z);
 	player.transform.position = Vector3(center.transform.position.x, 2.1, center.transform.position.z);
 	game_cam.GetComponent(CamController).center_on(center.transform.position);
-	// game_cam.GetComponent(CamController).move_to(center.transform.position);
+	game_cam.GetComponent(CamController).move_to(center.transform.position);
 	
 	add_map_img(grid_size/2, grid_size/2, 1);
 	map_grid[grid_size/2,grid_size/2].active = true;

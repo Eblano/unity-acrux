@@ -82,6 +82,5 @@ public function move_to(position : Vector3) {
 
 public function center_on(position : Vector3) {
 	center = position;
-	
-	// transform.position = Vector3(offset.x + center.x, offset.y + center.y, offset.z + center.z);
+	transform.position = Vector3(offset.x + center.x, offset.y + center.y, offset.z + center.z);
 }
