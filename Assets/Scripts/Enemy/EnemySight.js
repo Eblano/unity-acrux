@@ -52,7 +52,7 @@ function OnTriggerStay (other : Collider)
         var direction : Vector3 = other.transform.position - transform.position;
         var angle : float = Vector3.Angle(direction, transform.forward); // Solo tiene vision en cierto angulo
         
-        if(angle < fieldOfViewAngle * 0.5f) // si el player esa en cierto angulo
+        if(angle < fieldOfViewAngle) // si el player esa en cierto angulo
         {
             var hit : RaycastHit;
             // Queremos saber si hay algun otro objeto atravezad (up para n partir desde el piso)
