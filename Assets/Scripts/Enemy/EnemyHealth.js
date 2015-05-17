@@ -15,14 +15,21 @@ private var playerHealth : PlayerHealth;
 private var timeFlash : float;
 private var backColor : Color;
 
-function Awake()
+function Start()
 {
 	player = GameObject.FindGameObjectWithTag(Tags.player).transform;
 	playerHealth = player.gameObject.GetComponent(PlayerHealth);
 	enemySight = GetComponent(EnemySight);
 	childBody = transform.Find("Body").transform.Find("Poly");
 	timeFlash = 0;
-	backColor = childBody.renderer.material.color;
+	if (childBody) 
+	{ 
+		backColor = childBody.renderer.material.color;
+	}
+	else
+	{
+		backColor = Color.white;
+	}
 }
 
 
@@ -30,17 +37,16 @@ function Update()
 {
 	if( timeFlash >= 0)
 	{
-		childBody.renderer.material.color = flashColor;
+		if (childBody) { childBody.renderer.material.color = flashColor; }
 		timeFlash -= Time.deltaTime;
 	}
 	else
 	{
-		childBody.renderer.material.color = backColor;
+		if (childBody) { childBody.renderer.material.color = backColor; }
 	}
 	if(health <= 0){
 		justDie();
 	}
-	Debug.Log(Vector3.Distance(transform.position,player.position));
 	if(Vector3.Distance(transform.position,player.position) < 4.0f)
 	{
 		playerHealth.TakeDamage(damageToPlayer);

@@ -6,6 +6,7 @@ public var bala : Rigidbody;
 public var spawn_pfb : GameObject;
 public var speedBala : float = 30.0f;
 
+private var spawnClip : AudioSource;
 private var enemyHealth : EnemyHealth;
 private var waitToAttack : float = 0f;
 private var wavesTime : float = 0f;
@@ -17,6 +18,7 @@ function Awake() {
 	spawn_container = new GameObject();
 	spawn_container.name = "Spawned Mobs";
 	spawn_container.transform.parent = transform;
+	spawnClip = GetComponent(AudioSource);
 }
 
 function Start(){
@@ -44,7 +46,8 @@ function Update () {
 }
 
 function Attack(){
-	var random : int = 2;// parseInt(Random.Range(0,0)); // Random de 0.001 - 2.999
+	// Random de 0 a 2
+	var random : int = Mathf.FloorToInt(Random.Range(0,3)); 
 	
 	switch(random){
 		case 0 : Patron1(waves); break;
@@ -80,9 +83,10 @@ function Patron2(waves : int){
 }
 
 function Patron3(waves : int){
-	for (var j = 0; j < waves; j++)
+	spawnClip.Play();
+	for (var j : int = 0; j < waves; j++)
 	{
-		var add_pos : Vector3 = Vector3(-15, 0, 0);
+		var add_pos : Vector3 = Vector3(-10, 0, -10 + 20*(j%2));
 		var clone : GameObject = Instantiate(spawn_pfb, transform.position + add_pos, Quaternion.identity);
 		clone.transform.parent = spawn_container.transform;
 	}

@@ -107,15 +107,15 @@ function Awake ()
 	_animator = transform.Find("Body").GetComponent(Animator);
 	_hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
 	
+	/*
 	if(!_animation)
 		Debug.Log("The character you would like to control doesn't have animations. Moving her might look weird.");
 	
-	/*
-public var idleAnimation : AnimationClip;
-public var walkAnimation : AnimationClip;
-public var runAnimation : AnimationClip;
-public var jumpPoseAnimation : AnimationClip;	
-	*/
+	public var idleAnimation : AnimationClip;
+	public var walkAnimation : AnimationClip;
+	public var runAnimation : AnimationClip;
+	public var jumpPoseAnimation : AnimationClip;	
+	
 	if(!idleAnimation) {
 		_animation = null;
 		Debug.Log("No idle animation found. Turning off animations.");
@@ -132,6 +132,7 @@ public var jumpPoseAnimation : AnimationClip;
 		_animation = null;
 		Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
 	}
+	*/
 			
 }
 
@@ -305,7 +306,7 @@ function ApplyGravity ()
 			jumpingReachedApex = true;
 			SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
 		}
-		Debug.Log("Apply Grav" + IsGrounded());
+		// Debug.Log("Apply Grav" + IsGrounded());
 		if (IsGrounded ())
 			verticalSpeed = 0.0;
 		else
