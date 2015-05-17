@@ -22,9 +22,9 @@ private var nav : NavMeshAgent;                               	// Reference to t
 private var player : Transform;                               	// Reference to the player's transform.
 private var playerHealth: PlayerHealth;							// Reference to the PlayerHealth script.
 
-private var chaseTimer : float;                               		// A timer for the chaseWaitTime.
-private var patrolTimer : float;                              		// A timer for the patrolWaitTime.
-private var wayPointIndex : int;                              		// A counter for the way point array.
+public var chaseTimer : float;                               		// A timer for the chaseWaitTime.
+public var patrolTimer : float;                              		// A timer for the patrolWaitTime.
+public var wayPointIndex : int;                              		// A counter for the way point array.
 
 
 function Start ()

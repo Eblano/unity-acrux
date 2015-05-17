@@ -9,8 +9,8 @@ public var type;
 // patrolling references
 public var floor : GameObject;
 
-public var minRangeNextStept : float;
-public var maxRangeNextStept  : float;
+public var minRangeNextStept : float = 5.0f;
+public var maxRangeNextStept  : float = 10.0f;
 public var goToHere : Vector3;
 public var xLimits : Vector2;
 public var zLimits : Vector2;
@@ -31,10 +31,6 @@ function Awake ()
     nav = GetComponent(NavMeshAgent);
     player = GameObject.FindGameObjectWithTag(Tags.player).transform;
     playerHealth = player.GetComponent(PlayerHealth);
-
-	//default init
-	minRangeNextStept = 5.0f;
-	maxRangeNextStept = 10.0f;
 
 	goToHere = new Vector3(0,0,0); 
 	nextWayPoint ();

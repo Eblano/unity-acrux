@@ -9,6 +9,7 @@ public var hitClip : AudioClip;
 public var flashColor : Color = Color.red;
 public var lifebar : UI.Image;
 
+private var backColor : Color;
 private var inmune : boolean = false;
 //Anim stuff
 private var anim : Animator;
@@ -28,13 +29,14 @@ function Awake ()
     playerMovement = GetComponent(ThirdPersonController);
     hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent(HashIDs);
     sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent(SceneFadeInOut);
-    childBody = transform.Find("Poligono");
+    childBody = transform.Find("Body").transform.Find("Poly");
+    backColor = childBody.renderer.material.color;
 }
+
 
 function Update ()
 {
 	lifebar.rectTransform.sizeDelta = Vector2(health*3,30);
-	
     if(health <= 0f)
     {
         if(!playerDead)
@@ -60,8 +62,9 @@ function Update ()
 			if(childBody) { childBody.renderer.material.color = flashColor; }
 			flash += Time.deltaTime;
 		}
-		else{
-			if (childBody) { childBody.renderer.material.color = Color.white; }
+		else
+		{
+			childBody.renderer.material.color = backColor;
 		}
 	}
 }
