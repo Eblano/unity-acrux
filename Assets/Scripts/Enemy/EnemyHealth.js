@@ -8,7 +8,7 @@ public var flashTime : float = 0.1f;
 public var damageToPlayer : float = 10.0f;
 
 private var player : Transform;
-private var childBody : Transform;
+public var childBody : Transform;
 private var enemySight : EnemySight;
 private var timeFlash : float;
 
@@ -20,6 +20,7 @@ function Awake()
 	childBody = transform.Find("Body");
 	timeFlash = 0;
 }
+
 
 function Update()
 {
