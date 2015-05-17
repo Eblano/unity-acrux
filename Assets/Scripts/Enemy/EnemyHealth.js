@@ -9,13 +9,16 @@ public var damageToPlayer : float = 10.0f;
 
 private var player : Transform;
 public var childBody : Transform;
+public var body : GameObject;
 private var enemySight : EnemySight;
+private var playerHealth : PlayerHealth;
 private var timeFlash : float;
 private var backColor : Color;
 
 function Awake()
 {
 	player = GameObject.FindGameObjectWithTag(Tags.player).transform;
+	playerHealth = player.gameObject.GetComponent(PlayerHealth);
 	enemySight = GetComponent(EnemySight);
 	childBody = transform.Find("Body").transform.Find("Poly");
 	timeFlash = 0;
@@ -36,6 +39,11 @@ function Update()
 	}
 	if(health <= 0){
 		justDie();
+	}
+	Debug.Log(Vector3.Distance(transform.position,player.position));
+	if(Vector3.Distance(transform.position,player.position) < 4.0f)
+	{
+		playerHealth.TakeDamage(damageToPlayer);
 	}
 }
 
